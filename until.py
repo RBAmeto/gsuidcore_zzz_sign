@@ -133,17 +133,19 @@ async def get_checkin_rewards():
     data = await mys_api._mys_request(
             url=zzz_checkin_rewards,
             method='GET',
+            params={"act_id": zzz_Act_id},
             header=mys_api._HEADER
             )
     return data
 
 async def is_sign(region: str, uid: str,cookie) -> dict:
-    url = zzz_Is_signurl.format(zzz_Act_id, region, uid)
+    # url = zzz_Is_signurl.format(zzz_Act_id, region, uid)
     HEADER = copy.deepcopy(mys_api._HEADER)
     HEADER['Cookie'] = cookie
     data = await mys_api._mys_request(
-            url=url,
+            url=zzz_Is_signurl,
             method='GET',
+            params={"act_id": zzz_Act_id, "region": region, "uid": uid},
             header=HEADER
             )
     return data

@@ -88,7 +88,7 @@ async def send_notice(bid: str,gid: str, context: str):
 
 
 @scheduler.scheduled_job("cron", hour="0", minute="10")
-async def hk3_schedule_sign():
+async def zzz_schedule_sign():
     today = datetime.today().day
     sign_data = load_data()
     cnt = 0
