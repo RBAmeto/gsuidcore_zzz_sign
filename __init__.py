@@ -11,8 +11,8 @@ from gsuid_core.gss import gss
 from gsuid_core.logger import logger
 from gsuid_core.aps import scheduler
 
-sv_hk_sign = SV("绝区零米游社签到")
-sv_hk_sign_config = SV("绝区零米游社签到配置", pm=1)
+sv_zzz_sign = SV("绝区零米游社签到")
+sv_zzz_sign_config = SV("绝区零米游社签到配置", pm=1)
 
 
 SIGN_PATH = os.path.join(os.path.dirname(__file__), "./sign_on.json")
@@ -34,7 +34,7 @@ def save_data(data):
 
 
 
-@sv_hk_sign.on_prefix(('zzz开启','zzz关闭'))
+@sv_zzz_sign.on_prefix(('zzz开启','zzz关闭'))
 async def switch_autosign(bot: Bot, ev: Event):
     """自动签到开关"""
     today = datetime.today().day
@@ -116,13 +116,13 @@ async def zzz_schedule_sign():
     return cnt, sum
 
 
-@sv_hk_sign_config.on_fullmatch("zzz全部重签")
+@sv_zzz_sign_config.on_fullmatch("zzz全部重签")
 async def reload_sign(bot: Bot, ev: Event):
     await bot.send("开始重执行。")
     cnt=0
     sum=0
     try:
-        cnt, sum = await hk3_schedule_sign()
+        cnt, sum = await zzz_schedule_sign()
     except:
-        cnt, sum = await hk3_schedule_sign()
+        cnt, sum = await zzz_schedule_sign()
     await bot.send(f"重执行完成，状态刷新{cnt}条，共{sum}条")
